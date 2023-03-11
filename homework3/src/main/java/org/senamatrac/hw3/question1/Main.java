@@ -37,6 +37,11 @@ public class Main {
         int randomNumber = generateRandomNumber(1, 100);
         Scanner sc = new Scanner(System.in);
 
+        //Her kullanıcının tahmin sayısı sıfırdan başlatılır.
+        for (Player player : players) {
+            player.guessCount = 0;
+        }
+
         while (!founded) {  //Continue, until the number is guessed.
             for (Player player : players) { // All players make a guess one-by-one.
                 player.guessCount++;
@@ -46,7 +51,7 @@ public class Main {
                 if (number == randomNumber) { // the number is founded.
                     founded = true;
                     player.wins++;
-                    System.out.println("\u001B[31m" + player.name + "\u001B[0m" + " won.");
+                    System.out.println("\u001B[31m" + player.name + "\u001B[0m" + " won. Guess count: "+ player.guessCount);
 
                     break;// the answer is guessed this round finished
                 } else if (number < randomNumber) {
@@ -58,10 +63,10 @@ public class Main {
         }
     }
 
-    static void displayLeaderboard() {
-        System.out.println("**********" + "\u001B[36m" + " LEADERBOARD " + "\u001B[0m" + "*********");
+    static void displayLeaderboard(int gameCount) {
+        System.out.println("**********" + "\u001B[36m" + " LEADERBOARD of "+gameCount+ " games " + "\u001B[0m" + "*********");
         for (Player player : players) {
-            System.out.println("-->" + player.name + " won " + player.wins + " games.\t Total guess count : " +player.guessCount);
+            System.out.println("-->" + player.name + " won " + player.wins + " games.");
         }
     }
 
@@ -84,7 +89,7 @@ public class Main {
             }
         }
 
-        displayLeaderboard();
+        displayLeaderboard(roundCount);
         System.out.println("see you soon :).");
     }
 }
