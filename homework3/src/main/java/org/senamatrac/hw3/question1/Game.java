@@ -3,7 +3,7 @@ package org.senamatrac.hw3.question1;
 import java.util.Objects;
 import java.util.Scanner;
 
-public class Main {
+public class Game {
     static Player[] players;
     static boolean gameFinished = false;
     static Scanner sc = new Scanner(System.in);
@@ -72,14 +72,14 @@ public class Main {
 
     public static void main(String[] args) {
         System.out.println("Have fun!");
-        enterPlayerCount();
-        enterPlayers();
+        Game.enterPlayerCount();
+        Game.enterPlayers();
 
         int roundCount = 0;
 
         while (!gameFinished) { //Continue until game is finished.
             System.out.println("------- Round " + ++roundCount + " is started -------");
-            roundStart();
+            Game.roundStart();
             System.out.printf("\nDo you want to play of return match: (y/n) ");
             Scanner sc = new Scanner(System.in);
             String answer = sc.next();
@@ -89,7 +89,7 @@ public class Main {
             }
         }
 
-        displayLeaderboard(roundCount);
+        Game.displayLeaderboard(roundCount);
         System.out.println("see you soon :).");
     }
 }
